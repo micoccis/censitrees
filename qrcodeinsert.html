@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>censiTrees</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="./style.css" />
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        
+        <!-- <script src=" https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script> -->
+        <!-- <script src="js/form-validation.js"></script> -->
+
+      <!--   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+
+        <script src="./qr_packed.js"></script>
+        <script>
+    
+// // form validation
+//     $(document).ready(function () {
+//         $('#registration').validate({
+//             rules: {
+//                 qrcode: {
+//                     required: true
+//                 }
+//             },
+//             messages: {
+//                 username: "Please enter a valid Name."
+//             }
+//         });
+//     });
+//     // Acquisisci geolocalizzazione onclick
+    function getSession() {
+                $.ajax({
+                    url: "./getsession.php",
+                    type: "GET",
+                    //dataType:"json",
+                    //data: formData, //data to server
+                    success: function (data, textStatus, jqXHR) {
+                        //data response from server
+                        var out = data;
+                        if (out.session != "NULL") {
+                            document.getElementById("session").innerHTML = out.nome + " " + out.cognome;
+                            getListaFondi();
+                            
+                            //displayScheda(out);
+                            //  window.alert(out.nome);
+                            //window.alert(out[1].tipointervento);
+                        } else {
+                            //window.alert(out.description);
+                            //window.alert("non sei loggato");
+                            window.location.assign("./nolog.html");
+
+                        }
+
+                    },
+                    error: function (er) {
+                        var status = er.status;
+                        var text = er.statustext;
+                        var message = status + ":" + text; -
+                            alert(message);
+                    }
+                })
+            };
+    function getMyLocation() {
+                var displayLat = document.getElementById("lat");
+                var displayLng = document.getElementById("lng");
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function (position) {
+                        var lat = position.coords.latitude;
+                        var lng = position.coords.longitude;
+                        displayLat.value = lat;
+                        displayLng.value = lng;
+                    }, function () {
+                        handleLocationError(true, infoWindow, map.getCenter());
+                    });
+                } else {
+                    // Browser doesn't support Geolocation
+                    handleLocationError(false, infoWindow, map.getCenter());
+                }
+            }; 
+    // get fondi
+    function getListaFondi() {
+            $.ajax({
+                url: "./getlistafondi.php",
+                type: "GET",
+                //dataType:"json",
+                //data: formData, //data to server
+                success: function (data, textStatus, jqXHR) {
+                    //data response from server
+                    var out = data;
+                    displayListaFondi(out);
+                    //displayScheda(out);
+                    //window.alert(out[1].tipointerventoid);
+                    //window.alert(out[1].tipointervento);
+
+                },
+                error: function (er) {
+                    var status = er.status;
+                    var text = er.statustext;
+                    var message = status + ":" + text; -
+                        alert(message);
+                }
+            })
+        };
+    //get tipi interventi
+    function getListaInterventi(){
+        $.ajax({
+            url: "./getlistainterventi.php",
+            type: "GET",
+            //dataType:"json",
+            //data: formData, //data to server
+            success: function (data, textStatus, jqXHR) {
+                //data response from server
+                var out = data;
+                displayListaInterventi(out);
+                //displayScheda(out);
+                //window.alert(out[1].tipointerventoid);
+                //window.alert(out[1].tipointervento);
+              
+            },
+            error: function (er) {
+                var status = er.status;
+                var text = er.statustext;
+                var message = status + ":" + text; -
+                    alert(message);
+            }
+        })
+        };
+    // visualizza lista fondi
+    function displayListaFondi(out) {
+        var listafondi = out;
+        //window.alert(listainterventi[0].tipointerventoid);
+        //window.alert(listainterventi[0].tipointervento);
+        var i, x = "";
+        for (i in listafondi) {
+            //     //x += "<option value=\"" + listaInterventi[i].tipointerventoid +"\""+  ">" + listaInterventi[i].tipoIntervento + "</option>";
+            // x += listainterventi[i].tipointerventoid +";"+ listainterventi[i].tipointervento +"<br>";
+            x += "<option value=\"" + listafondi[i].fondo + "\">" + listafondi[i].fondo + "</option>";
+
+        }
+        document.getElementById("fondo").innerHTML = x;
+    };
+    // visualizza lista interventi
+    function displayListaInterventi(out) {
+            var listainterventi = out;
+            //window.alert(listainterventi[0].tipointerventoid);
+            //window.alert(listainterventi[0].tipointervento);
+            var i, x = "";
+             for (i in listainterventi) {
+            //     //x += "<option value=\"" + listaInterventi[i].tipointerventoid +"\""+  ">" + listaInterventi[i].tipoIntervento + "</option>";
+               // x += listainterventi[i].tipointerventoid +";"+ listainterventi[i].tipointervento +"<br>";
+                x += "<option value=\""+ listainterventi[i].tipointervento + "\">"+ listainterventi[i].tipointervento + "</option>";
+
+             }   
+            document.getElementById("tipointervento").innerHTML = x;
+        };
+     //inserisci scheda
+    function updateScheda(){
+        //var vschedaid = document.getElementById("schedaid").value;
+        var vlat = document.getElementById("lat").value;
+        var vlng = document.getElementById("lng").value;
+        var vqrcode = document.getElementById("qrcode").value;
+        //var vprovincia = document.getElementById("provincia").value;
+        //var vcomune = document.getElementById("comune").value;
+        //var vlocalita = document.getElementById("localita").value;
+        var vfondo = document.getElementById("fondo").value;
+        var vspecie = document.getElementById("specie").value;
+        var vsspecie = document.getElementById("sspecie").value;
+        //var vtipointervento = document.getElementById("tipointervento").value;
+        var vnotascheda = document.getElementById("notascheda").value;
+    
+        var formScheda = { 
+            //schedaid:vschedaid,
+            lat:vlat,
+            lng: vlng,
+            qrcode:vqrcode,
+            //provincia:vprovincia,
+            //comune:vcomune,
+            //localita:vlocalita,
+            fondo:vfondo,
+            specie:vspecie,
+            sspecie:vsspecie,
+            //tipointervento:vtipointervento,
+            notascheda:vnotascheda
+            };
+        $.ajax({
+            url: "./qrcodeinsert.php",
+            type: "POST",
+            //dataType:"json",
+            data: formScheda, //data to server
+            success: function (data, textStatus, jqXHR) {
+                //data response from server
+                var out = data;
+                var x ="";
+               
+                if(out.qrcode != "NULL"){
+                redirectRisposta(out);
+                //window.alert(out.status);
+                //window.alert(out.Qta);
+                } else {
+               
+                    window.alert(out.description);
+                    window.alert("Codice QRCODE già usato o non inserito");
+                    window.location.assign("./qrcodeinsert.html");
+                    
+                }
+               
+            },
+            error: function (er) {
+                var status = er.status;
+                var text = er.statustext;
+                var message = status + ":" + text; -
+                //alert(message);
+                //window.alert (er.description);
+                window.alert("FUNZIONAMENTO OFFLINE: LA SCHEDA SARA' CARICATA AUTOMATICAMENTE QUANDO LA RETE SARA' DISPONIBILE");
+                window.location.assign("./qrcodeinsert.html");
+            }
+        });
+           }; 
+
+     //Redirect verso pagina di visualizzazione risposta
+     function redirectRisposta(out) {
+        var vschedaid = out[0].schedaid;
+        window.location.assign("./schedaout.html?schedaid="+vschedaid)
+        //document.getElementById("scheda").innerHTML = vschedaid
+        } 
+        </script>
+    </head>
+    <body onload="getSession()">
+        <div>
+ <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="./indexLogin.html">CTrees</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="./indexLogin.html">home
+                    <span class="sr-only">(current)</span>
+                </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarFondo" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">fondi </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarFondo">
+                            <a class="dropdown-item" href="./fondoinsert.html">crea</a>
+                            <a class="dropdown-item" href="./fondocensitodisplay.html">visualizza</a>
+<!--
+                            <a class="dropdown-item" href="./incostruzione.html">modifica</a>
+                            <a class="dropdown-item" href="./incostruzione.html">cancella</a>
+-->
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarPiante" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    piante </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarPiante">
+                            <a class="dropdown-item" href="./qrcodegen.html">genera codice</a>
+                            <a class="dropdown-item" href="./qrcodeinsert.html">crea</a>
+                            <a class="dropdown-item" href="./schedasearch.html">visualizza</a>
+                            <a class="dropdown-item" href="./schedamodify.html?qrcode=">modifica</a>
+<!--                            <a class="dropdown-item" href="./incostruzione.html">cancella</a>-->
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarInterventi" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    interventi </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarInterventi">
+                            <a class="dropdown-item" href="./interventoinsert.html?qrcode=">crea</a>
+                            <a class="dropdown-item" href="./interventoinsertall.html">crea su tutto il fondo</a>
+                            <a class="dropdown-item" href="./interventodisplay.html?order=intervento">visualizza</a>
+<!--                            <a class="dropdown-item" href="./incostruzione.html">cancella</a>-->
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarProgetti" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    progetti </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarProgetti">
+                            <a class="dropdown-item" href="./progettoinsert.html">crea</a>
+                            <a class="dropdown-item" href="./progettocensitodisplay.html">visualizza</a>
+<!--
+                            <a class="dropdown-item" href="./incostruzione.html">modifica</a>
+                            <a class="dropdown-item" href="./incostruzione.html">cancella</a>
+-->
+                        </div>
+                    </li>
+            </div>
+        </nav>
+        </div>
+        <div id="banner" class="container-fluid bg-5">
+            <h1>CensiTrees</h1>
+        </div>
+        <div class="container-fluid">
+        <h2>Inserisci scheda </h2>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+       <div> <a href="./logout.html" class="btn btn-danger">logout</a></div>
+           <p></p>
+        <div class="card">
+            <div class="card-body">
+                <h6>Benvenuto</h6>
+                <div id="session"></div>
+            </div>
+        </div>
+        <p></p>
+       
+        
+<!-- <p><button type="button" class="btn btn-info" onclick="getMyLocation()">Rileva coordinate</button></p>
+<p><button type="button" class="btn btn-info" onclick="getListaFondi()">Inserisci fondo</button></p> -->
+<!-- <div class="form-group">
+    <label for="tipofondo">Fondo</label>
+
+    <select class="custom-select" id="tipofondo">
+        <!-- <option> generati automaticamente da getListaIntereventi()
+    </select>
+    <small id="tipofondoHelp" class="form-text text-muted">Fondo della pianta </small>
+
+</div> -->
+
+
+<!-- <p><button type="button" class="btn btn-info" onclick="getListaInterventi()">Inserisci intervento</button></p> -->
+<!-- <div class="input-group mb-3">
+    <div class="input-group-prepend">
+        <label class="input-group-text" for="inputGroupSelect01">Options</label>
+    </div>
+
+    <select class="custom-select" id="inputGroupSelect01">
+        <option selected>Choose...</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+    </select>
+</div> -->
+
+<!-- form inserisci scheda alberi -->
+
+<!-- <form action="./qrcodeinsert.php" method="POST">-->
+<form  id ="registration" name="registration" onsubmit="updateScheda()">
+
+    <div class="form-group">
+        <label for="qrcode">QRcode (obbligatorio)</label>
+        <input id="qrcode" name="qrcode" value="" type="text" class="form-control" aria-describedby="qrcodeHelp  " placeholder="codice del qrcode"
+            required>
+        <small id="qrcodeHelp" class="form-text text-muted">puoi utilizzare una
+            <a href="intent://scan/#Intent;scheme=zxing;package=com.google.zxing.client.android;end"> app android</a> oppure una
+            <a href="https://qrcode-app.co/" target="_blank">app IoS</a> per leggere il codice qrcode e poi copiare il codice nel campo.</small>
+    </div>
+    <div class="form-group">
+        <label for="fondo">Fondo</label>    
+        <select class="custom-select" id="fondo" name="fondo">
+            <!-- <option> generati automaticamente da getListaFondi()-->
+        </select>
+        <small id="tipofondoHelp" class="form-text text-muted">nome del fondo dove è situata la pianta </small>
+    </div>
+    <div class="form-group">
+    <button type="button" class="btn btn-info" onclick="getMyLocation()">Rileva coordinate</button>
+    </div>
+    <div class="form-group">
+        <label for="lat">Latitudine</label>
+        <input id="lat" name="lat" value="" type="text" class="form-control" aria-describedby="latHelp" placeholder="latitudine" readonly>
+        <small id="latHelp" class="form-text text-muted">posizione della pianta: latitudine</small>
+    </div>
+    <div class="form-group">
+        <label for="lng">Longitudine</label>
+        <input id="lng" name="lng" value="" type="text" class="form-control" aria-describedby="lngHelp" placeholder="longitudine" readonly>
+        <small id="lngHelp" class="form-text text-muted">posizione della pianta: longitudine</small>
+    </div>    
+    <!-- <div class="form-group">
+        <label for="provincia">Provincia</label>
+        <input id="provincia" name="provincia" value="" type="text" class="form-control" aria-describedby="provinciaHelp  " placeholder="provincia">
+        <small id="provinciaHelp" class="form-text text-muted">provincia del fondo </small>
+    </div>
+    <div class="form-group">
+        <label for="comune">Comune</label>
+        <input id="comune" name="comune" value="" type="text" class="form-control" aria-describedby="comuneaHelp  " placeholder="comune">
+        <small id="comuneaHelp" class="form-text text-muted">comune del fondo </small>
+    </div>
+    <div class="form-group">
+        <label for="localita">Località</label>
+        <input id="localita" name="localita" value="" type="text" class="form-control" aria-describedby="localitaHelp  " placeholder="località">
+        <small id="localitaHelp" class="form-text text-muted">località del fondo </small>
+    </div> -->
+    <div class="form-group">
+        <label for="specie">Specie</label>
+        <input id="specie" name="specie" value="" type="text" class="form-control" aria-describedby="specieHelp  " placeholder="specie">
+        <small id="specieHelp" class="form-text text-muted">specie arborea </small>
+    </div>
+    <div class="form-group">
+        <label for="sspecie">Sotto specie</label>
+        <input id="sspecie" name="sspecie" value="" type="text" class="form-control" aria-describedby="sspecieHelp  " placeholder="sotto specie">
+        <small id="sspecieHelp" class="form-text text-muted">sotto specie arborea </small>
+    </div>
+        <!-- <div class="form-group">
+            <label for="tipointervento">Tipo Intervento</label>
+    
+        <select class="custom-select" id="tipointervento">
+        </select>
+                <small id="tipointerventoHelp" class="form-text text-muted">interventi sulla pianta </small>
+
+    </div> -->
+    <div class="form-group">
+        <label for="notascheda">Note scheda</label>
+        <textarea class="form-control" id="notascheda" name ="notascheda" rows="3" aria-describedby="notaschedaHelp"></textarea>
+        <small id="notaschedaHelp" class="form-text text-muted">note aggiuntive </small>
+    </div>
+    <button type="button" class="btn btn-success" onclick="updateScheda()">inserisci scheda</button>
+   <!--  <button type="submit" class="btn btn-success" >inserisci scheda submit</button> -->
+    <button type="reset" class="btn btn-danger">reset</button>
+</form>
+</div>
+
+<!-- Footer -->
+<div id="footer" class="container-fluid text-center bg-5">
+    <param> censitrees</param>
+</div>
+<script>
+    // Check that service workers are registered
+    if ('serviceWorker' in navigator) {
+        // Use the window load event to keep the page load performant
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('./sw_pre.js');
+        });
+    }
+</script>
+
+    </body>
+</html>

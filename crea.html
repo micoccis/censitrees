@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>censitrees</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="./pianta.js"></script>
+    <script>
+        function init(){
+            //getArticoli();
+        //getListaCategoria();
+        //createArticolo()
+       //redirectRichiesta()
+    }
+    </script>
+ 
+
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+
+    <!-- <script>
+    $(document).ready(function(){
+        $('form input[type="text"]').prop("disabled", true);
+        $(".agree").click(function(){
+            if($(this).prop("checked") == true){
+                $('form input[type="text"]').prop("disabled", false);
+            }
+            else if($(this).prop("checked") == false){
+                $('form input[type="text"]').prop("disabled", true);
+            }
+        });
+    });
+    </script> -->
+    <!-- <script>
+        //get categorie
+        // get tipi magazine
+        // get articoli
+        function Start(){
+            //getArticoli();
+           getListaCategoria();
+           createArticolo()
+           //redirectRichiesta()
+        };
+        function createArticolo(){
+            $.ajax({
+            url: "./articolo/create.php",
+            type: "GET",
+            //dataType:"json",
+            //data: formData, //data to server
+            success: function (data, textStatus, jqXHR) {
+                //data response from server
+                var out = data;
+                //displayArticoli(out);
+                //window.alert(out.records[0].Titolo);
+                //window.alert(out.qrcode);
+            },
+            error: function (er) {
+                var status = er.status;
+                var text = er.statustext;
+                var message = status + ":" + text; -
+                    alert(message);
+            }
+        });
+
+        };
+        function  getArticoli(){
+            $.ajax({
+            url: "./articolo/read.php",
+            type: "GET",
+            //dataType:"json",
+            //data: formData, //data to server
+            success: function (data, textStatus, jqXHR) {
+                //data response from server
+                var out = data;
+                displayArticoli(out);
+                //window.alert(out.records[0].Titolo);
+                //window.alert(out.qrcode);
+            },
+            error: function (er) {
+                var status = er.status;
+                var text = er.statustext;
+                var message = status + ":" + text; -
+                    alert(message);
+            }
+        });
+        };
+        function displayArticoli(out){
+            var r = out;
+                var i, x = "";
+                var row = "";
+                //document.getElementById("proprietario").innerHTML="<b>Prorietario:</b> " +fondo[0].nome + " "+ fondo[0].cognome + "<br>";
+                var tbody = document.getElementById("myTbody");
+                tbody.innerHTML = row;
+                for (i in r) {
+                var row = "<tr><td><b>" +
+                        r[i].Titolo +  "</b></td><td>" +
+                        r[i].Categoria +  "</td><td>" + 
+                        r[i].Città +  "</td><td>" + 
+                        r[i].Regione +  "</td><td>" + 
+                        r[i].Stato +  "</td><td>" + 
+                        r[i].Rivista + "</td><td>" + 
+                        r[i].Data + "</td><td>" +
+                        "<a href= \"/" + r[i].Url +  "\">"+r[i].Url + "</a></td></tr>";
+                //var row2 = "<tr><td>" + "Provincia" + "</td><td>" + fondo[i].provincia + "</td></tr>";
+                //var row3= "<tr><td>" + "Comune" + "</td><td>" + fondo[i].comune + "</td></tr>";
+                // var row3 = "<tr><td>" + "Numero interventi" + "</td><td>" + intervento[i].NumInterventi + "</td></tr>";
+                // var row4 = "<tr><td>" + "Data interventi" + "</td><td>" + intervento[i].DataIntervento + "</td></tr>";
+                // var row2 = "<tr><td>" + "Numero piante interessate" + "</td><td>" + intervento[i].NumPianteIntervento + "</td></tr>";
+                // var row5 = "<tr><td>" + "Fondi interessati" + "</td><td>" + intervento[i].InterventiFondo + "</td></tr>";
+                
+
+                //var rows = row0+acc1+acc3+acc4+acc5+row4;
+                //window.alert(row);
+                //var rows = row                                                                                                                              ;
+                tbody.innerHTML += row;
+                        }
+
+        };
+        function getListaCategoria(){
+        $.ajax({
+           // url: "./getlistainterventi.php",
+            url: "./categoria/read.php",
+            type: "GET",
+            //dataType:"json",
+            //data: formData, //data to server
+            success: function (data, textStatus, jqXHR) {
+                //data response from server
+                var out = data;
+                displayListaCategoria(out);
+                //displayScheda(out);
+                //window.alert(out[1].tipointerventoid);
+                //window.alert(out[1].tipointervento);
+              
+            },
+            error: function (er) {
+                var status = er.status;
+                var text = er.statustext;
+                var message = status + ":" + text; -
+                    alert(message);
+            }
+        })
+        };
+         // visualizza lista genere articoli
+        function displayListaCategoria(out) {
+            var listacategoria = out;
+            //window.alert(listainterventi[0].tipointerventoid);
+            //window.alert(listainterventi[0].tipointervento);
+            var i, x = "<option value=\"\">Qualsiasi</option>";
+            for (i in listacategoria) {
+                //     //x += "<option value=\"" + listaInterventi[i].tipointerventoid +"\""+  ">" + listaInterventi[i].tipoIntervento + "</option>";
+                // x += listainterventi[i].tipointerventoid +";"+ listainterventi[i].tipointervento +"<br>";
+                x += "<option value=\"" + listacategoria[i].Categoria + "\">" + listacategoria[i].Categoria + "</option>";
+
+            }
+            document.getElementById("categoria").innerHTML = x;
+        };
+  //Redirect risposta
+  function redirectRichiesta() {
+        var vcategoria= document.getElementById("categoria").value;
+        var vtipoluogo = document.getElementById("tipoluogo").value;
+        var vluogo = document.getElementById("luogo").value;
+        var formData= {
+            categoria: vcategoria,
+            tipoluogo: vtipoluogo,
+            luogo:vluogo
+        };
+        $.ajax({
+            url: "./articolo/read.php",
+            type: "GET",
+            //dataType:"json",
+            data: formData, //data to server
+            success: function (data, textStatus, jqXHR) {
+                //data response from server
+                var out = data;
+                displayArticoli(out);
+                //window.alert(out.records[0].Titolo);
+                //window.alert(out.qrcode);
+            },
+            error: function (er) {
+                var status = er.status;
+                var text = er.statustext;
+                var message = status + ":" + text; -
+                    alert(message);
+            }
+        });
+
+       // window.location.assign("./schedadisplay.html?qrcode="+vqrcode+"&"+tipoLuogo+"="+vtipoLuogo+"&"+tipoPianta+"="+vtipoPianta)
+}
+    </script> -->
+    <!--
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function() {
+          'use strict';
+          window.addEventListener('load', function() {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function(form) {
+              form.addEventListener('submit', function(event) {
+                if (form.checkValidity() === false) {
+                  event.preventDefault();
+                  event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+              }, false);
+            });
+          }, false);
+        })();
+    </script>
+-->
+<script>
+(function() {
+    'use strict';
+    window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+    form.addEventListener('submit', function(event) {
+    if (form.checkValidity() === false) {
+    event.preventDefault();
+    event.stopPropagation();
+    }
+    form.classList.add('was-validated');
+    }, false);
+    });
+    }, false);
+    })();
+</script>
+</head>
+<body onload="init()">
+    	<!-- nav bar -->
+	<div>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a class="navbar-brand" href="./index.html">CTrees</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active">
+						<a class="nav-link" href="./index.html">home
+					<span class="sr-only">(current)</span> </a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="./login.html">login </a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="./comefunziona.html">? </a>
+					</li>
+					
+			</div>
+		</nav>
+	</div>
+	<!-- Carusel con una slide -->
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+	<div class="carousel-item active">
+	  <img class="d-block w-100" src="./img/banner_censitees.png" alt="banner">
+	</div>
+	<!-- <div class="carousel-item">
+	  <img class="d-block w-100" src="..." alt="Second slide">
+	</div>
+	<div class="carousel-item">
+	  <img class="d-block w-100" src="..." alt="Third slide">
+	</div> -->
+  </div>
+</div>
+	<div id="banner" class="bg-5 container-fluid">
+		<h2 style="text-align:center">CensiTrees comunity</h2>
+	</div>
+	<div id="main" class="container-fluid">
+		<!--[if lt IE 7]>
+			<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+		<![endif]-->
+        <div id="alert" class="alert alert-success" role="alert"> Inserisci nuova pianta</div>
+		<div> 
+			<!-- <a class="btn btn-success" href="./index.html" role="button">Cerca</a> -->
+            <a class="btn btn-info" href="./index.html" role="button"> conta</a>
+			<a class="btn btn-info" href="./cerca.html" role="button"> cerca</a> 
+			<a class="btn btn-info disabled" href="./crea.html" role="button">Inserisci</a>
+            <a class="btn btn-info " href="./map.html" role="button"> mappa</a>
+
+            <p></p>
+		</div>
+		<div>
+			<h4>Scheda pianta</h4>
+			<form class="needs-validation" novalidate action="javascript:createPlants()"> 
+				<div class="form-group">
+                    <small id="comuneHelp" class="form-text text-muted"> campo obbligatorio <span style="color: red;">*</span></small>
+
+                    <label for="comune">Comune <span style="color: red;">*</span></label>
+                    <input id="comune" name="comune" value="" type="text" class="form-control"  aria-describedby="comuneHelp" placeholder="" required>
+                    <div class="invalid-feedback">Inserisci Comune</div>
+                    <div class="invalid-feedback">inserisci comune</div>
+                    <small id="comuneHelp" class="form-text text-muted"> Comune pianta</small>
+                    
+                    <label for="provincia">Provincia <span style="color: red;">*</span></label>
+                    <input id="provincia" name="provincia" value="" type="text" class="form-control"  aria-describedby="provinciaHelp" placeholder="" required>
+                    <div class="invalid-feedback">inserisci provincia</div>
+                    <small id="provinciaHelp" class="form-text text-muted"> Provincia pianta</small>
+
+                    <label for="nome">Nome rilevatore</label>
+                    <input id="nome" name="nome" value="" type="text" class="form-control"  aria-describedby="nomeHelp" placeholder="">
+                    <small id="nomeHelp" class="form-text text-muted">  Nome rilevatore</small>
+                  
+                    <label for="cognome">Cognome rilevatore</label>
+                    <input id="cognome" name="cognome" value="" type="text" class="form-control"  aria-describedby="cognomeHelp" placeholder="">
+                    <small id="cognomeHelp" class="form-text text-muted"> Cognome rilevatore</small>
+
+                    <label for="associazione"> Associazione</label>
+                    <input id="associazione" name="associazione" value="" type="text" class="form-control"  aria-describedby="associazioneHelp  " placeholder="nome assiciazione">
+                    <small id="associazioneHelp" class="form-text text-muted"> stato fitopatologico</small>
+                    
+                    <label for="stima_altezza"> Stima altezza <span style="color: red;">*</span> </label>
+					<input id="stima_altezza" name="stima_altezza" type="number"step=0.01 min=0 value="" type="text" class="form-control"  aria-describedby="stimaaltezzaHelp  " placeholder="in metri" required>
+					<small id="stimaaltezzaHelp" class="form-text text-muted">stima altezza</small>
+                    
+                    <label for="stima_larghezza"> Stima larghezza </label>
+                    <input id="stima_larghezza" name="stima_larghezza" type="number"step=0.01 min=0 value="" type="text" class="form-control"  aria-describedby="stimalarghezzaHelp  " placeholder="in metri">
+					<small id="stimalarghezzaHelp" class="form-text text-muted">stima larghezza</small>
+
+                    <label for="diametro"> Circonferenza a 1,5mt </label>
+                    <input id="diametro" name="diametro" type="number"step=0.01 min=0 value="" type="text" class="form-control"  aria-describedby="diametroHelp  " placeholder="in centimetri">
+					<small id="diametroHelp" class="form-text text-muted"> diametro tronco</small>
+
+                    <label for="specie"> Specie <span style="color: red;" >*</span> </label>
+					<select id ="specie" name "specie" class="custom-select" required>
+						<!--<option selected>luogo</option> -->
+                        <!-- <option value="1">Qualsiasi</option> -->
+                        <option value=""></option>
+						<option value="castagno">castagno</option>
+                        <option value="marrone">marrone</option>
+                        <option value="melo">melo</option>
+                        <option value="pero">pero</option>
+                        <option value="vite">vite</option>
+                    </select>
+                    <div class="invalid-feedback">inserisci specie</div>
+                    <small id="specieHelp" class="form-text text-muted">specie della pianta</small>
+
+                    <label for="ecotipo"> Ecotipo </label>
+                    <input id="ecotipo" name="ecotipo" value="" type="text" class="form-control"  aria-describedby="ecotipoHelp  " placeholder="ecotipo">
+                    <small id="ecotipoHelp" class="form-text text-muted"> ecotipo</small>
+
+                    <label for="localita">Località di dimora <span style="color:red">*</span></label>
+                    <input id="localita" name="localita" value="" type="text" class="form-control"  aria-describedby="localitaHelp" placeholder="località" required>
+                    <div class="invalid-feedback">Inserisci località</div>
+                    <small id="localitaHelp" class="form-text text-muted"> Località pianta</small>
+                    
+                    <label for="stato_fito"> Stato fitosanitario</label>
+                    <select id="stato_fito" name="stato_fito" value="" type="text" class="form-control"  aria-describedby="statofitoHelp  " placeholder="descrizione">
+                        <option value=""></option>
+						<option value=""></option>
+						<option value="abbandonato">abbandonato</option>
+                        <option value="coltivato">coltivato</option>
+                        <option value="potato">potato</option>
+                    </select>
+                    <small id="statofitoHelp" class="form-text text-muted"> stato fitosanitario</small>
+
+                    <label for="nota">Note</label>
+                    <!-- <input id="nota" name="nota" value="" type="text" class="form-control"  aria-describedby="notaHelp" placeholder=""> -->
+                    <textarea class="form-control" id="nota" rows="3"></textarea>
+                    <small id="notaHelp" class="form-text text-muted"> Note</small>
+              
+                </div>
+                <div class="form-group">
+                        <button type="button" class="btn btn-info" onclick="getMyLocation()">Rileva coordinate</button>
+                </div>
+                <div class="form-group">
+                    <label for="lat"> Latitudine <span style="color: red;">*</span></label>
+                    <input id="lat" name="lat" value="" type="text" class="form-control"  aria-describedby="latHelp  " placeholder="" required>
+                    <div class="invalid-feedback">inserisci latitudine pianta</div>
+                    <small id="latHelp" class="form-text text-muted"> latitudine della pianta</small>
+                </div>
+                <div class="form-group">
+                    <label for="lon"> Longitudine <span style="color: red;">*</span></label>
+                    <input id="lon" name="lon" value="" type="text" class="form-control"  aria-describedby="lonHelp  " placeholder="" required>
+                    <div class="invalid-feedback">inserisci longitudine della pianta</div>
+                    <small id="lonHelp" class="form-text text-muted"> Longitudine della pianta</small>
+                </div>
+                <div class="form-group">
+                    <label for="url_file">Immagine della pianta</label>
+                    <input type="file" class="form-control-file" id="url_file">
+                  </div>
+            
+                <!-- <button type="submit" class="btn btn-success">cerca submit</button> -->
+                <button type="submit" class="btn btn-success"> inserisci </button>
+                <!-- <button type="button" class="btn btn-success" onclick="createPlants()"> inserisci </button> -->
+                <button type="reset" class="btn btn-danger">reset</button>
+            </form>
+        </div>
+     </div>
+     
+<!-- Footer -->
+<div id="footer" class="container-fluid text-center bg-5">
+    <param> censitrees</param>
+</div>
+</body>
+</html>

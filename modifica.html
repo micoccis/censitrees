@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>	  <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>		 <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>		 <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>censiTrees</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="./style.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+
+	<!--per qrcode-->
+	<script src="kjua-0.1.1.min.js" charset="utf-8"></script>
+	<!-- per mappe -->
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+		crossorigin="" />
+	<!-- Make sure you put this AFTER Leaflet's CSS -->
+	<script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
+		crossorigin=""></script>
+	<script src="http://www.openlayers.org/api/OpenLayers.js"></script>
+	<script src="leaflet-heat.js"></script>
+	
+	<!--API keaflet.js e mappe mapbox  -->
+	<!-- OSM API  10.9162113 -->
+<!--per accesso db-->
+<script src="./pianta.js" charset="utf-8"></script>
+<!-- <script src="./js/fondo.js" charset="utf-8"></script> -->
+<script>
+	function init(){
+	//getPlants();
+	//getCountAll();
+	// getFondo() funzione dentro getmap.js
+	//getCoordinate();
+	getCounts();
+	//getTest();
+}
+</script>
+</head>
+<body onload = "init()"> 
+	<!-- nav bar -->
+	<div>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a class="navbar-brand" href="./index.html">CTrees</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active">
+						<a class="nav-link" href="./index.html">home
+					<span class="sr-only">(current)</span> </a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="./login.html">login </a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="./comefunziona.html">? </a>
+					</li>
+					
+			</div>
+		</nav>
+	</div>
+	<!-- Carusel con una slide -->
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+	<div class="carousel-item active">
+	  <img class="d-block w-100" src="./img/banner_censitees.png" alt="banner">
+	</div>
+	<!-- <div class="carousel-item">
+	  <img class="d-block w-100" src="..." alt="Second slide">
+	</div>
+	<div class="carousel-item">
+	  <img class="d-block w-100" src="..." alt="Third slide">
+	</div> -->
+  </div>
+</div>
+	<div id="banner" class="bg-5 container-fluid">
+		<h2 style="text-align:center">CensiTrees comunity</h2>
+	</div>
+	<div id="main" class="container-fluid">
+		<!--[if lt IE 7]>
+			<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+		<![endif]-->
+		<div id="alert" class="alert alert-success" role="alert"> In costruzione</div>
+		<div> 
+			<!-- <a class="btn btn-success" href="./index.html" role="button">Cerca</a> -->
+			<a class="btn btn-info" href="./index.html" role="button"> conta</a>
+			<a class="btn btn-info" href="./cerca.html" role="button"> cerca</a> 
+			<a class="btn btn-info" href="./crea.html" role="button">Inserisci</a>
+            <a class="btn btn-info " href="./map.html" role="button"> mappa</a>
+
+			<p></p>
+		</div>
+		<div>
+			<h4>In contruzione</h4>
+
+		</div>
+		<div class="table-responsive">
+			<table  class="table table-striped" id="myTable">
+				<thead>
+					<tr><th>Località</th>
+					<th>Ecotipo</th>
+					<th>N.</th>
+					</tr>
+				</thead >
+	
+				<!--tabella generata da displayFondo() -->
+				<tbody id="myTbody">
+				</tbody>
+			</table>
+		</div>
+
+ 	</div>
+	<!-- Footer -->
+	<div id="footer" class="container-fluid text-center bg-5">
+		<param> censitrees(c)stefano micocci</param>
+	</div>
+</body>
+</html>

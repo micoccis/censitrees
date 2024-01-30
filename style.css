@@ -1,0 +1,138 @@
+.qrcode-text-btn {
+  display: inline-block;
+  height: 1.5em;
+  width: 1.5em;
+  background: url(qr_icon.svg) 50% 50% no-repeat;
+  cursor: pointer;
+}
+
+.qrcode-text-btn > input[type=file] {
+  position: absolute;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+.qrcode-text {
+  padding-right: 1.7em;
+  margin-right: 0;
+  vertical-align: middle;
+}
+
+.qrcode-text + .qrcode-text-btn {
+  width: 1.7em;
+  margin-left: -1.7em;
+  vertical-align: middle;
+}
+
+p {
+	font-size: 18px ;
+	font-family: 'Quicksand', sans-serif;
+}
+h1 {
+	/* font-size: 18px ; */
+	font-family: 'Quicksand', sans-serif;
+}
+h2 {
+	/* font-size: 18px ; */
+	font-family: 'Quicksand', sans-serif;
+}
+h3 {
+	/* font-size: 18px ; */
+	font-family: 'Quicksand', sans-serif;
+}
+h4 {
+	/* font-size: 18px ; */
+	font-family: 'Quicksand', sans-serif;
+}
+
+ul {
+	font-size: 18px;
+	font-family: 'Quicksand', sans-serif;
+}
+.bg-1 { 
+      background-color: #006600; /* Green */
+      color: #ffffff;
+      padding-top: 10px;
+      padding-bottom: 5px;
+  }
+  .bg-2 { 
+      background-color: #000099; /* Dark Blue */
+      color: #ffffff;
+      padding-top: 10px;
+      padding-bottom: 5px;
+  }
+  .bg-3 { 
+      background-color: #fff; /* White */
+      color: #555555;
+      padding-top: 10px;
+      padding-bottom: 5px;
+  }
+   .bg-4 { 
+      background-color: #C72020; /* Red */
+      color: #ffffff;
+      padding-top: 10px;
+      padding-bottom: 5px;
+  }
+  .bg-5 {
+  	background-color: #92680f; /* gray dark */
+  	color: #ffffff;
+  	text-align: center;
+  	/* padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center; */
+  }
+  .bg-6 {
+  	background-color: #E0E0E0; /* gray light */
+  	color: #ffffff;
+     padding-top: 10px;
+     padding-bottom: 5px;
+  }
+.bg-7 {
+  	background-color: #FE7A1F; /* orange */
+  	color: #ffffff;
+     padding-top: 10px;
+     padding-bottom: 5px;
+  }
+.bg-c1 { 
+      background-color: #006600; /* Green */
+      color: #ffffff;
+      padding-top: 10px;
+      padding-bottom: 2px;
+  }
+.bg-c3 { 
+      background-color: #fff; /* white */
+      color: #555555;
+      padding-top: 3px;
+      padding-bottom: 3px;
+  }
+
+  .container-fluid {
+      padding-top: 20px;
+      padding-bottom: 20px;
+  }
+.bg-footer {
+  	background-color: #202020; /* gray dark */
+  	color: #ffffff;
+  	padding-top: 30px;
+    padding-bottom: 30px;
+  }
+.bg-collapse {
+      padding-top: 10px;
+      padding-bottom: 10px;
+  }
+
+  a {
+    color: white;
+    text-decoration: none;
+}
+/* 
+#banner{
+	padding-top: 10px;
+    padding-bottom: 10px;
+} */
+#map{
+	height: 400px;
+	width: 100%; 
+	color: #202020;
+}

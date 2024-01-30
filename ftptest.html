@@ -1,0 +1,61 @@
+<html><head>
+    <link rel='stylesheet' href='ftp.css'>
+    <script language='javascript' src='ftp.js'></script>
+    <title>Easy FTP 1.0</title>
+<script>
+function Login(form) {
+    var username = form.username.value;
+    var password = form.password.value;
+    var server = form.server.value;
+    var local = form.local.value;
+    if (username && password && server && local) {
+            window.open(local, '_blank', 
+              'toolbar=yes,location=yes,status=yes,' + 
+              'scrollbars=auto,copyhistory=no,menubar=no,width=' 
+              + ((screen.AvailWidth/2)-12) + ',height=' + 
+              (screen.AvailHeight-124) +',left=0,top=0,resizable=yes');
+            window.open("ftp://" + username + ":" + 
+              password + "@" + server, '_blank', 
+              'toolbar=yes,location=yes,status=yes,' + 
+              'scrollbars=auto,copyhistory=no,menubar=no,width=' 
+              + ((screen.AvailWidth/2)-12) + ',height=' 
+              + (screen.AvailHeight-124) +',left=' + ((screen.AvailWidth/2)) 
+              + '),top=0,resizable=yes');
+            }
+        else {
+            alert("NO BLANK FIELDS!");
+            }
+    }
+    // ftp://micocci.eu:mahdiash@ftp.micocci.eu
+
+</script>
+</head>
+    
+    <body bgcolor='#ffffff'>
+        <br><font class='title'><b>Easy FTP 1.0</b></font><hr>
+        After connecting, you can drag'n drop files among the windows. 
+        Left window is your local folder, right window is the remote folder.
+        <p><table border='0' cellpadding='0' cellspacing='1' 
+                  align='center' width='98%'><form name=login>
+            <tr><td class='brgtcell' align='right'>&nbsp;Username&nbsp;</td>
+            <td class='darkcell'>&nbsp;<input type='text' 
+              name='username' value='anonymous' size='20' 
+              maxlength='20'>&nbsp;&nbsp;</td></tr>
+            <tr><td class='brgtcell' align='right'>&nbsp;Password&nbsp;</td>
+            <td class='darkcell'>&nbsp;<input type='text' 
+              name='password' value='microsoft' size='20' 
+              maxlength='20'>&nbsp;&nbsp;</td></tr>
+            <tr><td class='brgtcell' align='right'>&nbsp;Server&nbsp;</td>
+            <td class='darkcell'>&nbsp;<input type='text' 
+              name='server' value='ftp.microsoft.com' size='60' 
+              maxlength='120'>&nbsp;&nbsp;</td></tr>
+            <tr><td class='brgtcell' align='right'>&nbsp;Local&nbsp;</td>
+            <td class='darkcell'>&nbsp;<input 
+              type='text' name='local' value='c:\' size='60' 
+              maxlength='200'>&nbsp;&nbsp;</td></tr>
+        </table>
+        <hr><table border='0' cellpadding='0' cellspacing='0' width='100%'><tr>
+        <td align='right'><input style='color:#000000' 
+          type='button' value='Connect' onClick='Login(this.form)'></td>
+        </tr></form></table> 
+    </body></html>

@@ -1,0 +1,181 @@
+[{
+"_id": "5eb12d0ca0b8a3000141a9e7",
+"type": "calendar/task/1",
+"patient_id": "5Va26tp0IJHe1g6gbPYCvu0XRivXCLg3SKjF5M501XMrLwQ74Y",
+"metadata": {
+"start_date": 1588629600000,
+"end_date": 1603317599999,
+"source": "trec-home",
+"provenance": "medical",
+"entry_date": 1588629600000,
+"tags": ["diabetes2"],
+"user_id": "9EIoWv1V6ECGf8nXd6PuJFpYHvxEn4F1g4XYZ4g29IgBwBFZTm",
+"server_date": 1588669708605
+},
+"data": {
+"data_type": "observation/weight/1",
+"alarm": {
+"type": "notification",
+"anticipation_value": 10,
+"anticipation_unit": "minute"
+},
+"regular": {
+"executions": [{
+"_id": "f83a35fe-b1a8-b9b4-c8fa-1e1b2196b5a3",
+"moment": "morning",
+"time": "10:00"
+}],
+"frequency": {
+"type": "every_x_days",
+"values": [1]
+}
+},
+"variable": {
+"executions": []
+},
+"notes": ""
+},
+"version": 1
+}, {
+"_id": "5eb1399fa0b8a3000141a9e8",
+"type": "calendar/task/1",
+"patient_id": "5Va26tp0IJHe1g6gbPYCvu0XRivXCLg3SKjF5M501XMrLwQ74Y",
+"metadata": {
+"start_date": 1588629600000,
+"end_date": 1588715999999,
+"source": "trec-home",
+"provenance": "medical",
+"entry_date": 1588629600000,
+"tags": ["diabetes2"],
+"user_id": "9EIoWv1V6ECGf8nXd6PuJFpYHvxEn4F1g4XYZ4g29IgBwBFZTm",
+"server_date": 1588672927189
+},
+"data": {
+"data_type": "observation/blood-pressure/1",
+"alarm": {
+"type": "notification",
+"anticipation_value": 10,
+"anticipation_unit": "minute"
+},
+"regular": {
+"executions": [{
+"_id": "68ac6961-4381-6bfc-7e19-9909a2468549",
+"moment": "afternoon",
+"time": "17:00"
+}],
+"frequency": {
+"type": "at_need",
+"values": []
+}
+},
+"variable": {
+"executions": []
+},
+"notes": ""
+},
+"version": 1
+}, {
+"_id": "5eb13c6ea0b8a3000141a9e9",
+"type": "calendar/task/1",
+"patient_id": "5Va26tp0IJHe1g6gbPYCvu0XRivXCLg3SKjF5M501XMrLwQ74Y",
+"metadata": {
+"start_date": 1588629600000,
+"end_date": 1597874399999,
+"source": "trec-home",
+"provenance": "medical",
+"entry_date": 1588629600000,
+"tags": ["diabetes2"],
+"user_id": "9EIoWv1V6ECGf8nXd6PuJFpYHvxEn4F1g4XYZ4g29IgBwBFZTm",
+"server_date": 1588673646144
+},
+"data": {
+"data_type": "observation/glycaemia/1",
+"alarm": {
+"type": "notification",
+"anticipation_value": 10,
+"anticipation_unit": "minute"
+},
+"regular": {
+"executions": [{
+"_id": "5e6e4abd-e705-ea2e-82c9-a4c3ee47ce3f",
+"moment": "morning",
+"time": "11:00"
+}],
+"frequency": {
+"type": "every_x_days",
+"values": [6]
+}
+},
+"variable": {
+"executions": []
+},
+"notes": ""
+},
+"version": 1
+}, {
+"_id": "5eafe634683b8e0001097bce",
+"type": "observation/weight/1",
+"patient_id": "5Va26tp0IJHe1g6gbPYCvu0XRivXCLg3SKjF5M501XMrLwQ74Y",
+"metadata": {
+"start_date": 1588585980000,
+"end_date": 1588585980000,
+"entry_date": 1588586036708,
+"provenance": "personal",
+"source": "trec-app-diabete",
+"user_id": "5Va26tp0IJHe1g6gbPYCvu0XRivXCLg3SKjF5M501XMrLwQ74Y",
+"server_date": 1588586036912
+},
+"data": {
+"value": 75,
+"unit": "kg"
+},
+"version": 1
+}, {
+"_id": null,
+"patient_id": "5Va26tp0IJHe1g6gbPYCvu0XRivXCLg3SKjF5M501XMrLwQ74Y",
+"type": "calendar/execution/1",
+"metadata": {
+"start_date": 1588665600000,
+"end_date": 1588665600000,
+"entry_date": 1588665600000,
+"source": "backend",
+"provenance": "system",
+"tags": ["diabetes2"]
+},
+"data": {
+"task_id": "5eb12d0ca0b8a3000141a9e7",
+"execution_id": "f83a35fe-b1a8-b9b4-c8fa-1e1b2196b5a3",
+"data_type": "observation/weight/1",
+"alarm": {
+"type": "notification",
+"anticipation_value": 10,
+"anticipation_unit": "minute"
+},
+"moment": "morning",
+"notes": ""
+}
+}, {
+"_id": null,
+"patient_id": "5Va26tp0IJHe1g6gbPYCvu0XRivXCLg3SKjF5M501XMrLwQ74Y",
+"type": "calendar/execution/1",
+"metadata": {
+"start_date": 1588669200000,
+"end_date": 1588669200000,
+"entry_date": 1588669200000,
+"source": "backend",
+"provenance": "system",
+"tags": ["diabetes2"]
+},
+"data": {
+"task_id": "5eb13c6ea0b8a3000141a9e9",
+"execution_id": "5e6e4abd-e705-ea2e-82c9-a4c3ee47ce3f",
+"data_type": "observation/glycaemia/1",
+"alarm": {
+"type": "notification",
+"anticipation_value": 10,
+"anticipation_unit": "minute"
+},
+"moment": "morning",
+"notes": ""
+}
+}]
