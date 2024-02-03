@@ -2,7 +2,13 @@
 
 ## Scopo dell'app
 
-*a cosa serve l'app?*
+Questa applicazione è costituita da una app e da un backend (business logic e database). L'obiettivo dell'applicazione è il seguente:
+
+- censire piante con con gli attributi di caratterizzazione (es. tipo, altezza, età presunta,ecc...)
+- localizzazione sulla mappa delle piante;
+- trattamenti eserguiti sulle piuante.
+
+<br>
 
 [TbC]
 
