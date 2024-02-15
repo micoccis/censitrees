@@ -10,7 +10,14 @@ Questa applicazione è costituita da una app e da un backend (business logic e d
 
 [TbC]
 
-## User story
+## User cases
+
+### UC1 - inserimento dati albero
+
+### UC2 - Visualizzazione dati in tabella
+
+### UC3 - Visualizzazione dati su mappa
+
 
 *come viene usata dall'utente?*
 
